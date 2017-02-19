@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         String title = getString(R.string.app_name);
         switch (position) {
             case 0:
-                title = getString(R.string.nav_active_deliveries);
+                title = getString(R.string.nav_map_view);
                 fragment = new ActiveDeliveriesFragment();
 
                 break;
@@ -129,17 +129,18 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 fragment = new ActiveDeliveriesFragment();
                 break;
             case 2:
-                title = getString(R.string.nav_invite_friends);
+                title = getString(R.string.nav_financial_history);
                 fragment = new ActiveDeliveriesFragment();
 
                 break;
             case 3:
-                title = getString(R.string.nav_schedule_basket);
-                fragment = new ActiveDeliveriesFragment();
-                break;
-            case 4:
                 title = getString(R.string.nav_profile_settings);
                 fragment = new ProfileFragment();
+
+                break;
+            case 4:
+                title = getString(R.string.nav_sos);
+                fragment = new ActiveDeliveriesFragment();
                 break;
             case 5:
                 AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();

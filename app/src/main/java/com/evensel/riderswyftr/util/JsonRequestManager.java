@@ -142,7 +142,7 @@ public class JsonRequestManager {
 		HashMap<String, String> params = new HashMap<>();
 		params.put("email",email);
 		params.put("password",password);
-		params.put("user","user");
+		params.put("user","rider");
 
 		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
 				finalUrl, new JSONObject(params),
@@ -274,7 +274,7 @@ public class JsonRequestManager {
 		String finalUrl = url;
 		HashMap<String, String> params = new HashMap<>();
 		params.put("email",email);
-		params.put("user","user");
+		params.put("user","rider");
 
 		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
 				finalUrl, new JSONObject(params),
@@ -516,7 +516,7 @@ public class JsonRequestManager {
 		String finalUrl = "http://api.swyftr.com/api/v1/password/reset";
 		HashMap<String, String> params = new HashMap<>();
 		params.put("email",email);
-		params.put("user","user");
+		params.put("user","rider");
 		params.put("password",password);
 		params.put("password_confirmation",conPassword);
 

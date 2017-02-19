@@ -20,27 +20,15 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.6"
+            android:layout_weight="0.9"
             android:src="@drawable/app_logo"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.4"
+            android:layout_weight="2.1"
             android:orientation="vertical"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/txtSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/signup_text"
-                android:gravity="center"
-                android:textSize="@dimen/font_large"
-                android:textStyle="bold"
-                android:paddingTop="@dimen/space_normal"
-                android:paddingBottom="@dimen/space_normal"
-                android:textColor="@android:color/white"/>
+            android:gravity="center_horizontal|bottom">
 
             <EditText
                 android:id="@+id/txtUserName"
@@ -79,82 +67,6 @@
                 android:paddingTop="@dimen/space_normal"
                 android:paddingBottom="@dimen/space_normal"
                 android:textColor="@android:color/white"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2.2"
-                android:gravity="center">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="0.7"
-                    android:layout_height="1dp"
-                    android:background="@color/colorView"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:text="Or"
-                    android:gravity="center"
-                    android:textSize="@dimen/font_large"
-                    android:paddingTop="@dimen/space_normal"
-                    android:paddingBottom="@dimen/space_normal"
-                    android:textColor="@android:color/white"/>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_weight="0.7"
-                    android:layout_height="1dp"
-                    android:background="@color/colorView"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:weightSum="3"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <LinearLayout
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <com.facebook.login.widget.LoginButton
-                        android:id="@+id/login_button"
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent"
-                        android:visibility="gone"/>
-
-                    <ImageView
-                        android:id="@+id/btnFacebook"
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent"
-                        android:padding="6dp"
-                        android:src="@drawable/social_facebook"/>
-
-                </LinearLayout>
-
-
-
-                <ImageView
-                    android:id="@+id/btnTwitter"
-                    android:layout_width="70dp"
-                    android:padding="6dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/social_twitter"/>
-
-                <ImageView
-                    android:id="@+id/btnGoogle"
-                    android:layout_width="70dp"
-                    android:padding="6dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/social_google"/>
-            </LinearLayout>
         </LinearLayout>
 
 

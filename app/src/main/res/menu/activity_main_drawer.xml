@@ -4,22 +4,24 @@
     <group android:checkableBehavior="single" >
         <item
             android:id="@+id/nav_active_deliveries"
-            android:title="@string/nav_active_deliveries"
+            android:title="@string/nav_map_view"
             />
         <item
             android:id="@+id/nav_delivery_history"
             android:title="@string/nav_delivery_history" />
         <item
             android:id="@+id/nav_invite_friends"
-            android:title="@string/nav_invite_friends" />
-
-        <item
-            android:id="@+id/nav_schedule_basket"
-            android:title="@string/nav_schedule_basket" />
+            android:title="@string/nav_financial_history" />
 
         <item
             android:id="@+id/nav_profile_settings"
             android:title="@string/nav_profile_settings" />
+
+        <item
+            android:id="@+id/nav_schedule_basket"
+            android:title="@string/nav_sos" />
+
+
 
         <item
             android:id="@+id/nav_logout"

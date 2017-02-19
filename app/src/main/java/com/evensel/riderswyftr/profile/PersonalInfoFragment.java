@@ -361,7 +361,7 @@ public class PersonalInfoFragment extends Fragment {
                         editor.commit();
 
                         Intent intent = getActivity().getIntent();
-                        intent.putExtra("FRAGMENT",4);
+                        intent.putExtra("FRAGMENT",3);
                         getActivity().finish();
                         startActivity(intent);
 

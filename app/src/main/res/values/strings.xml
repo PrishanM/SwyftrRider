@@ -2,20 +2,20 @@
     <string name="app_name">Swyftr</string>
     
     <!--nav drawer names -->
-    <string name="nav_active_deliveries">Active Deliveries</string>
+    <string name="nav_map_view">Map View</string>
     <string name="nav_delivery_history">Delivery History</string>
-    <string name="nav_invite_friends">Invite Friends</string>
-    <string name="nav_schedule_basket">Scheduled Basket</string>
+    <string name="nav_financial_history">Financial History</string>
     <string name="nav_profile_settings">Profile Settings</string>
+    <string name="nav_sos">SOS</string>
     <string name="nav_logout">Logout</string>
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_item_activity_titles">
-        <item>Active Deliveries</item>
+        <item>Map View</item>
         <item>Delivery History</item>
-        <item>Invite Friends</item>
-        <item>Scheduled Basket</item>
+        <item>Financial History</item>
         <item>Profile Settings</item>
+        <item>SOS</item>
         <item>Logout</item>
     </string-array>
 
