@@ -1,0 +1,152 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:id="@+id/nav_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingTop="@dimen/space_large"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/card_details_background">
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/txtCardNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="number"
+                android:gravity="center_vertical"
+                android:background="@drawable/tab_bar_border"
+                android:padding="@dimen/space_normal"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:hint="@string/card_number"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:weightSum="1"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/txtExp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:inputType="date"
+                    android:background="@drawable/tab_bar_border"
+                    android:padding="@dimen/space_normal"
+                    android:hint="@string/exp_date"/>
+
+                <EditText
+                    android:id="@+id/txtCvv"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:inputType="number"
+                    android:background="@drawable/tab_bar_border"
+                    android:padding="@dimen/space_normal"
+                    android:hint="@string/cvv_code"/>
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/txtCardHolder"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:background="@drawable/tab_bar_border"
+                android:padding="@dimen/space_normal"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:hint="@string/card_holder"/>
+
+            <EditText
+                android:id="@+id/txtZipCode"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:inputType="number"
+                android:background="@drawable/tab_bar_border"
+                android:padding="@dimen/space_normal"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:hint="@string/zip_code"/>
+
+            <EditText
+                android:id="@+id/txtStreetAddress"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/tab_bar_border"
+                android:padding="@dimen/space_normal"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:hint="@string/street_address"/>
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_large" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:orientation="vertical"
+                android:gravity="top"
+                android:background="@drawable/background_image"
+                android:paddingLeft="@dimen/space_large"
+                android:paddingTop="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/space_large">
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    style="@style/AppButtonHollow"
+                    android:textColor="@color/colorAccent"
+                    android:text="SAVE"/>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>
