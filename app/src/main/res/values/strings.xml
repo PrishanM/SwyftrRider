@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Swyftr</string>
+    <string name="app_name">Swyftr Rider</string>
     
     <!--nav drawer names -->
     <string name="nav_map_view">Map View</string>
