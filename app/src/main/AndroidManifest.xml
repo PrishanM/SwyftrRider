@@ -79,9 +79,13 @@
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
         <!-- Google Maps -->
+        <!--<meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDgerIdWiLu6u0mjHEyWDfhuj-dUvgeZT0" />-->
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDgerIdWiLu6u0mjHEyWDfhuj-dUvgeZT0" />
+            android:value="AIzaSyDB8zEEgywJfuIIEPwFO3zS6AG4i3b8ENc" />
 
 
     </application>
