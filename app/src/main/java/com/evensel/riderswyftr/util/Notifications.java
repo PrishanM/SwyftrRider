@@ -41,7 +41,7 @@ public class Notifications {
     }
 
     //No network error dialog
-    public AlertDialog showGPSDisabledNotification(final Context context){
+    public static AlertDialog showGPSDisabledNotification(final Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("GPS network not enabled");
         builder.setPositiveButton("Open location settings", new DialogInterface.OnClickListener() {

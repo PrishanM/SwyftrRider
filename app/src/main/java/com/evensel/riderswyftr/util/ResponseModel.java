@@ -12,9 +12,10 @@ import java.util.List;
     "status",
     "message",
     "details",
-    "token"
+    "token",
+    "data"
 })
-public class ResponseModel {
+public class  ResponseModel {
 
     @JsonProperty("status")
     private String status;
@@ -24,6 +25,8 @@ public class ResponseModel {
     private List<String> details = null;
     @JsonProperty("token")
     private String token;
+    @JsonProperty("data")
+    private Data data;
 
     @JsonProperty("status")
     public String getStatus() {
@@ -63,6 +66,16 @@ public class ResponseModel {
     @JsonProperty("token")
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @JsonProperty("data")
+    public Data getData() {
+        return data;
+    }
+
+    @JsonProperty("data")
+    public void setData(Data data) {
+        this.data = data;
     }
 
 }

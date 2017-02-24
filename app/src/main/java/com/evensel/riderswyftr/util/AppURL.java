@@ -13,4 +13,6 @@ public class AppURL {
     public static final String SEND_RESET_CODE_URL = "password/email";
     public static final String VALIDATE_RESET_CODE_URL = "validate/code";
     public static final String RESET_PASSWORD_URL = "password/reset";
+    public static final String GET_PICKUP__URL = "rider/pickuplocation";
+    public static final String GET_DROP_OFF__URL = "rider/dropofflocation";
 }

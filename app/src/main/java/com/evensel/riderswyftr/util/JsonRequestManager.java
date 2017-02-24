@@ -447,6 +447,71 @@ public class JsonRequestManager {
 
 	/******************************************************************************************************************************************/
 
+	/**
+	 * Get Pick Up Location
+	 **/
+	public interface getPickUpLocation{
+		void onSuccess(ResponseModel model);
+
+		void onError(String status);
+
+		void onError(ResponseModel model);
+
+
+	}
+
+	public void getPickUpLocationRequest(String url,int id,String token,
+										 final getPickUpLocation callback) {
+
+		//Log.d("test Request", image);
+		String finalUrl = url+"/"+id+"?token="+token;
+		HashMap<String, String> params = new HashMap<>();
+
+		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+				finalUrl, new JSONObject(params),
+				new Response.Listener<JSONObject>() {
+
+					@Override
+					public void onResponse(JSONObject response) {
+
+						ObjectMapper mapper = new ObjectMapper();
+
+						try {
+							if(response!=null){
+								ResponseModel responseModel = mapper.readValue(response.toString(), ResponseModel.class);
+								callback.onSuccess(responseModel);
+							}else{
+								callback.onError("Error occured");
+							}
+
+						} catch (Exception e) {
+							e.printStackTrace();
+							callback.onError("Error occured");
+						}
+					}
+				}, new Response.ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				callback.onError(errorResponse(error.networkResponse.data,HttpHeaderParser.parseCharset(error.networkResponse.headers)));
+			}
+		});
+
+		jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+		// Adding request to request queue
+		AppController.getInstance().addToRequestQueue(jsonObjReq,
+				tag_json_arry);
+
+	}
+
+
+	/******************************************************************************************************************************************/
+
+	/******************************************************************************************************************************************/
+
 
 	/**
 	 * Method to convert 400,401,500 error to response model class

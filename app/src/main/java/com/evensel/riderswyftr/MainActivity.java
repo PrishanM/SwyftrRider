@@ -22,7 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.evensel.riderswyftr.authentication.LoginActivity;
 import com.evensel.riderswyftr.deliveries.ActiveDeliveriesFragment;
-import com.evensel.riderswyftr.profile.ProfileFragment;
+import com.evensel.riderswyftr.pickup.MapViewFragment;
 import com.evensel.riderswyftr.util.AppController;
 import com.evensel.riderswyftr.util.Constants;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         switch (position) {
             case 0:
                 title = getString(R.string.nav_map_view);
-                fragment = new ActiveDeliveriesFragment();
+                fragment = new MapViewFragment();
 
                 break;
             case 1:
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
             case 3:
                 title = getString(R.string.nav_profile_settings);
-                fragment = new ProfileFragment();
+                //fragment = new ProfileFragment();
 
                 break;
             case 4:

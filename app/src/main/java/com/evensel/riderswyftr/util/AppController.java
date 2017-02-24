@@ -28,7 +28,8 @@ public class AppController extends Application {
  
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-    private static int jobId;
+
+    private static boolean isOffline = false;
  
     private static AppController mInstance;
 
@@ -228,6 +229,14 @@ public class AppController extends Application {
         editor.putString(Constants.LOGIN_SHARED_PREF_PASSWORD, password);
         editor.putString(Constants.LOGIN_ACCESS_TOKEN, token);
         editor.commit();
+    }
+
+    public static boolean isOffline() {
+        return isOffline;
+    }
+
+    public static void setIsOffline(boolean isOffline) {
+        AppController.isOffline = isOffline;
     }
 
 }

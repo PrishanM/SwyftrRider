@@ -76,6 +76,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                         progress = ProgressDialog.show(LoginActivity.this, null,
                                 "Authenticating...", true);
                         JsonRequestManager.getInstance(LoginActivity.this).loginUserRequest(AppURL.APPLICATION_BASE_URL+AppURL.USER_LOGIN_URL, txtUserName.getText().toString(),txtPassword.getText().toString(), requestCallback);
+
+
                     }
 
                 }
