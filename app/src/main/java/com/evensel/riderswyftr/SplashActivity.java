@@ -30,6 +30,7 @@ public class SplashActivity extends Activity {
     private int locationServicesState=0;
     private int locationCoarseState=0;
     private int writeExternalStorage=0;
+    private int useCamera=0;
     private final List<String> permissionList = new ArrayList<>();
 
     @Override
@@ -45,6 +46,7 @@ public class SplashActivity extends Activity {
             locationServicesState = checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION); // Permission for location services
             locationCoarseState = checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION); // Permission for location services
             writeExternalStorage = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            useCamera = checkSelfPermission(Manifest.permission.CAMERA);
 
             if(locationServicesState!=PackageManager.PERMISSION_GRANTED){
                 permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
@@ -54,6 +56,10 @@ public class SplashActivity extends Activity {
             }
             if(writeExternalStorage!=PackageManager.PERMISSION_GRANTED){
                 permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+
+            if(useCamera!=PackageManager.PERMISSION_GRANTED){
+                permissionList.add(Manifest.permission.CAMERA);
             }
 
             if (permissionList.size()>0){

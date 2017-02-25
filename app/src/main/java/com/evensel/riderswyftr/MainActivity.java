@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             userData.setText("Edit Name");
         }else{
             userData.setText(username);
+            AppController.setUserName(username);
         }
 
         if(!imageUrl.isEmpty()){

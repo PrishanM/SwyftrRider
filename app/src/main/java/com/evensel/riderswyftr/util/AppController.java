@@ -30,6 +30,8 @@ public class AppController extends Application {
     private ImageLoader mImageLoader;
 
     private static boolean isOffline = false;
+    private static String userName;
+    private static Data currentDetails;
  
     private static AppController mInstance;
 
@@ -239,4 +241,19 @@ public class AppController extends Application {
         AppController.isOffline = isOffline;
     }
 
+    public static String getUserName() {
+        return userName;
+    }
+
+    public static void setUserName(String userName) {
+        AppController.userName = userName;
+    }
+
+    public static Data getCurrentDetails() {
+        return currentDetails;
+    }
+
+    public static void setCurrentDetails(Data currentDetails) {
+        AppController.currentDetails = currentDetails;
+    }
 }

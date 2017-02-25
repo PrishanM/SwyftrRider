@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cornered_dialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DELIVERY DETAILS"
+            android:textColor="@color/colorTextDialog"
+            android:textSize="@dimen/font_xxxlarge"
+            android:gravity="center"
+            android:paddingTop="@dimen/space_normal"
+            android:paddingBottom="@dimen/space_normal"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorViewTransparent"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_large" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DELIVERY LOCATION"
+            android:textColor="@color/colorTextDialog"
+            android:textSize="@dimen/font_xxlarge"
+            android:gravity="center"
+            android:paddingTop="@dimen/space_normal"
+            android:paddingBottom="@dimen/space_normal"/>
+
+        <TextView
+            android:id="@+id/txtDeliveryLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorTextDialog"
+            android:textSize="@dimen/font_large"
+            android:gravity="center"
+            android:paddingBottom="@dimen/space_normal"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_large" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONTACT CUSTOMER"
+            android:textColor="@color/colorTextDialog"
+            android:textSize="@dimen/font_xxlarge"
+            android:gravity="center"
+            android:paddingTop="@dimen/space_normal"
+            android:paddingBottom="@dimen/space_normal"/>
+
+        <Button
+            android:id="@+id/btnMessage"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            style="@style/AppButtonHollow"
+            android:textColor="@color/colorAccent"
+            android:text="Message"/>
+
+        <Button
+            android:id="@+id/btnViewRoot"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            style="@style/AppButtonHollow"
+            android:textColor="@color/colorAccent"
+            android:text="View Root"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_large" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorViewTransparent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:gravity="right">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="50dp"
+                android:text="Cancel"
+                android:textColor="@color/colorAccent"
+                android:background="@android:color/white"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorViewTransparent"/>
+
+            <Button
+                android:id="@+id/btnLocation"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="50dp"
+                android:text="I'm At Location"
+                android:textColor="@color/colorAccent"
+                android:background="@android:color/white"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
