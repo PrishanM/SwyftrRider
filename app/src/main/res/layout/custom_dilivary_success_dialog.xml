@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cornered_dialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ORDER DELIVERED"
+            android:textColor="@color/colorTextDialog"
+            android:textSize="@dimen/font_xxxlarge"
+            android:gravity="center"
+            android:paddingTop="@dimen/space_normal"
+            android:paddingBottom="@dimen/space_normal"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorViewTransparent"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_large" />
+
+        <TextView
+            android:id="@+id/txtDeliveryLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Great !!! Order successfully delivered and \nmarked as completed.\nYou can view it on delivery history "
+            android:textColor="@color/colorTextDialog"
+            android:textSize="@dimen/font_large"
+            android:gravity="center"
+            android:paddingBottom="@dimen/space_normal"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_large" />
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorViewTransparent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:gravity="right">
+
+            <Button
+                android:id="@+id/btnRate"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:text="Rate Experience"
+                android:textColor="@color/colorAccent"
+                android:background="@android:color/white"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -321,6 +321,17 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
                     @Override
                     public void onClick(View v) {
                         dialog1.dismiss();
+                        final Dialog dialog2 = new Dialog(getActivity());
+                        dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog2.setContentView(R.layout.custom_dilivary_success_dialog);
+                        dialog2.show();
+                        Button btnRate = (Button)dialog2.findViewById(R.id.btnRate);
+                        btnRate.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog2.dismiss();
+                            }
+                        });
                     }
                 });
 
