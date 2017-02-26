@@ -25,6 +25,11 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.directions.route.AbstractRouting;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.evensel.riderswyftr.R;
 import com.evensel.riderswyftr.util.AppController;
 import com.evensel.riderswyftr.util.AppURL;
@@ -44,14 +49,17 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by Prishan Maduka on 2/12/2017.
  */
-public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
+public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClickListener, OnMapReadyCallback, RoutingListener {
 
     private Context context;
     private ProgressDialog progressDialog;
@@ -67,6 +75,7 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
     private double currentLatitude=0.0,currentLongitude=0.0;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 140;
     private HashMap<Marker,Data> markerMap = new HashMap<>();
+    private LatLng origin,destination;
 
     public MapViewFragment() {
         // Required empty public constructor
@@ -166,6 +175,7 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
 
             if(model.getStatus().equalsIgnoreCase("success")){
                 addDelivaryMarkers(model.getData());
+                drawRoute();
 
             }else{
                 Notifications.showToastMessage(layout,getActivity(),model.getMessage()).show();
@@ -268,58 +278,61 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
     public boolean onMarkerClick(Marker marker) {
 
         final Data data = markerMap.get(marker);
-        marker.hideInfoWindow();
-        final Dialog dialog1 = new Dialog(getActivity());
-        dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if(data!=null){
+            marker.hideInfoWindow();
+            final Dialog dialog1 = new Dialog(getActivity());
+            dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        if(data.getPickupLat()!=null){
-            dialog1.setContentView(R.layout.custom_pickup_dialog);
-            dialog1.show();
-            Button btnOk = (Button)dialog1.findViewById(R.id.btnParcels);
-            Button btnCancel = (Button)dialog1.findViewById(R.id.btnCancel);
-            TextView pickupLocation = (TextView)dialog1.findViewById(R.id.txtPickupLocation);
-            TextView contact = (TextView)dialog1.findViewById(R.id.txtContactPerson);
-            pickupLocation.setText(data.getPickupAddress());
-            contact.setText(data.getPickupContactPerson());
-            btnOk.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog1.dismiss();
-                    AppController.setCurrentDetails(data);
-                    Intent intent = new Intent(context,ParcelDetailsActivity.class);
-                    context.startActivity(intent);
-                }
-            });
+            if(data.getPickupLat()!=null){
+                dialog1.setContentView(R.layout.custom_pickup_dialog);
+                dialog1.show();
+                Button btnOk = (Button)dialog1.findViewById(R.id.btnParcels);
+                Button btnCancel = (Button)dialog1.findViewById(R.id.btnCancel);
+                TextView pickupLocation = (TextView)dialog1.findViewById(R.id.txtPickupLocation);
+                TextView contact = (TextView)dialog1.findViewById(R.id.txtContactPerson);
+                pickupLocation.setText(data.getPickupAddress());
+                contact.setText(data.getPickupContactPerson());
+                btnOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog1.dismiss();
+                        AppController.setCurrentDetails(data);
+                        Intent intent = new Intent(context,ParcelDetailsActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
 
-            btnCancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog1.dismiss();
-                }
-            });
-        }else if(data.getDropoffLat()!=null){
-            dialog1.setContentView(R.layout.custom_dilivary_dialog);
-            dialog1.show();
-            Button btnOk = (Button)dialog1.findViewById(R.id.btnLocation);
-            Button btnCancel = (Button)dialog1.findViewById(R.id.btnCancel);
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog1.dismiss();
+                    }
+                });
+            }else if(data.getDropoffLat()!=null){
+                dialog1.setContentView(R.layout.custom_dilivary_dialog);
+                dialog1.show();
+                Button btnOk = (Button)dialog1.findViewById(R.id.btnLocation);
+                Button btnCancel = (Button)dialog1.findViewById(R.id.btnCancel);
 
-            TextView deliveryLocation = (TextView)dialog1.findViewById(R.id.txtDeliveryLocation);
-            deliveryLocation.setText(data.getDropoffAddress());
+                TextView deliveryLocation = (TextView)dialog1.findViewById(R.id.txtDeliveryLocation);
+                deliveryLocation.setText(data.getDropoffAddress());
 
-            btnOk.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog1.dismiss();
-                }
-            });
+                btnOk.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog1.dismiss();
+                    }
+                });
 
-            btnCancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog1.dismiss();
-                }
-            });
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog1.dismiss();
+                    }
+                });
+            }
         }
+
 
 
 
@@ -349,13 +362,16 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
     }
 
     private void addPickUpMarkers(Data data){
+        origin = new LatLng(data.getPickupLon(),data.getPickupLat());
         Marker marker = map.addMarker(new MarkerOptions()
                 .position(new LatLng(data.getPickupLon(),data.getPickupLat()))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.rider_pickup_pin)));
         markerMap.put(marker,data);
+
     }
 
     private void addDelivaryMarkers(Data data){
+        destination = new LatLng(data.getDropoffLon(),data.getDropoffLat());
         Marker marker = map.addMarker(new MarkerOptions()
                 .position(new LatLng(data.getDropoffLon(),data.getDropoffLat()))
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.rider_dropoff_flag)));
@@ -366,5 +382,49 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
     public void onPause() {
         super.onPause();
         handler.removeCallbacks(runnable);
+    }
+
+    private void drawRoute(){
+        Routing routing = new Routing.Builder()
+                .travelMode(AbstractRouting.TravelMode.DRIVING)
+                .withListener(this)
+                .alternativeRoutes(true)
+                .waypoints(origin, destination)
+                .build();
+        routing.execute();
+    }
+
+    @Override
+    public void onRoutingFailure(RouteException e) {
+
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> route, int x) {
+        for (int i = 0; i <route.size(); i++) {
+
+            //In case of more than 5 alternative routes
+            if(i==0){
+                PolylineOptions polyOptions = new PolylineOptions();
+                polyOptions.color(getResources().getColor(R.color.colorPrimaryDark));
+                polyOptions.width(10 + i * 3);
+                polyOptions.addAll(route.get(i).getPoints());
+                Polyline polyline = map.addPolyline(polyOptions);
+            }
+
+            //polylines.add(polyline);
+
+            //Toast.makeText(getApplicationContext(),"Route "+ (i+1) +": distance - "+ route.get(i).getDistanceValue()+": duration - "+ route.get(i).getDurationValue(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
     }
 }
