@@ -31,7 +31,7 @@ import com.directions.route.RouteException;
 import com.directions.route.Routing;
 import com.directions.route.RoutingListener;
 import com.evensel.riderswyftr.R;
-import com.evensel.riderswyftr.deliveries.Test;
+import com.evensel.riderswyftr.deliveries.DeliveryActivity;
 import com.evensel.riderswyftr.util.AppController;
 import com.evensel.riderswyftr.util.AppURL;
 import com.evensel.riderswyftr.util.Constants;
@@ -333,7 +333,7 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
                                 dialog2.dismiss();
                             }
                         });*/
-                        Intent intent = new Intent(context, Test.class);
+                        Intent intent = new Intent(context, DeliveryActivity.class);
                         startActivity(intent);
                     }
                 });

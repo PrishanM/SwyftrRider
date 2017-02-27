@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/layoutMain">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/container_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/toolbar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container_body"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:gravity="top"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:id="@+id/txtOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:paddingTop="@dimen/activity_horizontal_margin"
+                    android:paddingBottom="@dimen/activity_horizontal_margin"
+                    android:text="Order 01"
+                    android:gravity="center"
+                    android:textSize="@dimen/font_xxxlarge"/>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="7"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/rider_scan_frame"
+                        android:gravity="center"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:id="@+id/imgScan"
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:src="@drawable/sample_qr"/>
+
+
+                    </LinearLayout>
+
+                    
+                    <TextView
+                        android:id="@+id/txtAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:textSize="@dimen/font_xxlarge"
+                        android:text="LKR 2400.00"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:paddingTop="@dimen/space_large"
+                    android:paddingBottom="@dimen/space_large"
+                    android:background="@drawable/scan_background"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtCustomerName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Thilina Wickramasinghe"
+                        android:textSize="@dimen/font_xxxlarge"
+                        android:gravity="center"
+                        android:textColor="@android:color/white"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="(Customer)"
+                        android:textSize="@dimen/font_xlarge"
+                        android:gravity="center"
+                        android:textColor="@android:color/white"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/space_normal"
+                    android:paddingRight="@dimen/space_normal">
+
+                    <Button
+                        android:id="@+id/btnFriend"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        style="@style/AppButtonHollow"
+                        android:textColor="@color/colorAccent"
+                        android:text="Friend Receive?"/>
+
+                    <Button
+                        android:id="@+id/btnViewOrder"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_height="50dp"
+                        style="@style/AppButtonHollow"
+                        android:textColor="@color/colorAccent"
+                        android:text="View Order"/>
+
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>
