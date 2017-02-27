@@ -31,6 +31,7 @@ import com.directions.route.RouteException;
 import com.directions.route.Routing;
 import com.directions.route.RoutingListener;
 import com.evensel.riderswyftr.R;
+import com.evensel.riderswyftr.deliveries.Test;
 import com.evensel.riderswyftr.util.AppController;
 import com.evensel.riderswyftr.util.AppURL;
 import com.evensel.riderswyftr.util.Constants;
@@ -321,7 +322,7 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
                     @Override
                     public void onClick(View v) {
                         dialog1.dismiss();
-                        final Dialog dialog2 = new Dialog(getActivity());
+                        /*final Dialog dialog2 = new Dialog(getActivity());
                         dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog2.setContentView(R.layout.custom_dilivary_success_dialog);
                         dialog2.show();
@@ -331,7 +332,9 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
                             public void onClick(View view) {
                                 dialog2.dismiss();
                             }
-                        });
+                        });*/
+                        Intent intent = new Intent(context, Test.class);
+                        startActivity(intent);
                     }
                 });
 
