@@ -5,6 +5,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -33,6 +34,9 @@ public class AppController extends Application {
     private static boolean isOffline = false;
     private static String userName;
     private static Data currentDetails;
+
+    private static Bitmap signature,nic,friendImage;
+    private static  String nicNumber;
  
     private static AppController mInstance;
 
@@ -256,5 +260,37 @@ public class AppController extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    public static Bitmap getSignature() {
+        return signature;
+    }
+
+    public static void setSignature(Bitmap signature) {
+        AppController.signature = signature;
+    }
+
+    public static Bitmap getNic() {
+        return nic;
+    }
+
+    public static void setNic(Bitmap nic) {
+        AppController.nic = nic;
+    }
+
+    public static Bitmap getFriendImage() {
+        return friendImage;
+    }
+
+    public static void setFriendImage(Bitmap friendImage) {
+        AppController.friendImage = friendImage;
+    }
+
+    public static String getNicNumber() {
+        return nicNumber;
+    }
+
+    public static void setNicNumber(String nicNumber) {
+        AppController.nicNumber = nicNumber;
     }
 }

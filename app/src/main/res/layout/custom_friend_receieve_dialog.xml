@@ -38,6 +38,7 @@
             android:layout_height="@dimen/space_normal" />
 
         <LinearLayout
+            android:id="@+id/layoutSignature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -110,6 +111,7 @@
             android:background="@color/colorHint"/>
 
         <LinearLayout
+            android:id="@+id/layoutNicImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -148,6 +150,7 @@
             android:background="@color/colorHint"/>
 
         <LinearLayout
+            android:id="@+id/layoutFriendImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
