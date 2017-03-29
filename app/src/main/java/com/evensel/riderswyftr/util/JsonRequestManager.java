@@ -510,6 +510,65 @@ public class JsonRequestManager {
 
 	/******************************************************************************************************************************************/
 
+	/**
+	 * Validate reset code
+	 **/
+	public interface getOrderHistory{
+		void onSuccess(OrderHistoryResponse model);
+
+		void onError(String status);
+
+		void onError(OrderHistoryResponse model);
+
+
+	}
+
+	public void getOrderHistoryRequest(String url,final getOrderHistory callback) {
+
+		HashMap<String, String> params = new HashMap<>();
+
+		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+				url, new JSONObject(params),
+				new Response.Listener<JSONObject>() {
+
+					@Override
+					public void onResponse(JSONObject response) {
+
+						ObjectMapper mapper = new ObjectMapper();
+
+						try {
+							if(response!=null){
+								OrderHistoryResponse responseModel = mapper.readValue(response.toString(), OrderHistoryResponse.class);
+								callback.onSuccess(responseModel);
+							}else{
+								callback.onError("Error occured");
+							}
+
+						} catch (Exception e) {
+							e.printStackTrace();
+							callback.onError("Error occured");
+						}
+					}
+				}, new Response.ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				callback.onError(ordersErrorResponse(error.networkResponse.data,HttpHeaderParser.parseCharset(error.networkResponse.headers)));
+			}
+		});
+
+		jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+		// Adding request to request queue
+		AppController.getInstance().addToRequestQueue(jsonObjReq,
+				tag_json_arry);
+
+	}
+
+	/******************************************************************************************************************************************/
+
 	/******************************************************************************************************************************************/
 
 
@@ -529,6 +588,30 @@ public class JsonRequestManager {
 			JSONObject errorResponse = new JSONObject(json);
 			if(errorResponse!=null){
 				responseModel = mapper.readValue(errorResponse.toString(),ResponseModel.class);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return responseModel;
+	}
+
+	/**
+	 * Method to convert 400,401,500 error to response model class
+	 * @param bytes
+	 * @param charset
+	 * @return ResponseModel
+	 */
+	private OrderHistoryResponse ordersErrorResponse(byte[] bytes,String charset){
+		OrderHistoryResponse responseModel = new OrderHistoryResponse();
+		responseModel.setMessage("Error Occured.");
+		responseModel.setStatus("error");
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			String json = new String(bytes, charset);
+			JSONObject errorResponse = new JSONObject(json);
+			if(errorResponse!=null){
+				responseModel = mapper.readValue(errorResponse.toString(),OrderHistoryResponse.class);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

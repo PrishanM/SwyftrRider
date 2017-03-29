@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.evensel.riderswyftr.authentication.LoginActivity;
 import com.evensel.riderswyftr.deliveries.ActiveDeliveriesFragment;
+import com.evensel.riderswyftr.deliveries.DeliveryHistoryFragment;
 import com.evensel.riderswyftr.pickup.MapViewFragment;
 import com.evensel.riderswyftr.util.AppController;
 import com.evensel.riderswyftr.util.Constants;
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 break;
             case 1:
                 title = getString(R.string.nav_delivery_history);
-                fragment = new ActiveDeliveriesFragment();
+                fragment = new DeliveryHistoryFragment();
                 break;
             case 2:
                 title = getString(R.string.nav_financial_history);
