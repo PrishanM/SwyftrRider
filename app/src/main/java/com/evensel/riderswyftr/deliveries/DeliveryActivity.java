@@ -2,14 +2,17 @@ package com.evensel.riderswyftr.deliveries;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -72,6 +75,32 @@ public class DeliveryActivity extends AppCompatActivity implements View.OnClickL
 
         btnFriendReceive.setOnClickListener(this);
         btnViewOrder.setOnClickListener(this);
+
+        startHandler();
+    }
+
+    private void startHandler() {
+        int SPLASH_TIMEOUT_TIME = 3000;
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Your inquiry has been successfully added");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        paramDialogInterface.dismiss();
+                        Intent intent = new Intent(DeliveryActivity.this,RateDeliveryActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+                builder.create().show();
+
+
+            }
+        }, SPLASH_TIMEOUT_TIME);
     }
 
     @Override

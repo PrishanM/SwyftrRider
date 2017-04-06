@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/layoutMain">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/background_image">
+
+            <LinearLayout
+                android:id="@+id/container_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/toolbar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container_body"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:gravity="top">
+
+                <!---->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/space_normal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/top_bar_star"
+                        android:paddingRight="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/font_xxlarge"
+                        android:textColor="@color/colorRate"
+                        android:text="Rate Experience"/>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Order delivered successfully."
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Please rate your experience to make our service better"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Completed at 5.20 PM"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:background="@color/colorRate"/>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:weightSum="1"
+                            android:background="@android:color/white"
+                            android:padding="@dimen/space_normal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.45"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/font_large"
+                                android:text="Rate User"/>
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:id="@+id/rateUser"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.55"
+                                android:layout_height="wrap_content"
+                                android:stepSize="1"
+                                style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:weightSum="1"
+                            android:background="@android:color/white"
+                            android:padding="@dimen/space_normal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.45"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/font_large"
+                                android:text="Rate Store"/>
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:id="@+id/rateStore"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.55"
+                                android:layout_height="wrap_content"
+                                android:stepSize="1"
+                                style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:weightSum="1"
+                            android:background="@android:color/white"
+                            android:padding="@dimen/space_normal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="0.45"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/font_large"
+                                android:text="Rate Swyftr"/>
+
+                            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                android:id="@+id/rateSwyftr"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.55"
+                                android:layout_height="wrap_content"
+                                android:stepSize="1"
+                                style="@style/Widget.MaterialRatingBar.RatingBar" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:weightSum="1"
+                            android:background="@android:color/white"
+                            android:padding="@dimen/space_normal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/font_large"
+                                android:text="Leave a review"/>
+
+                            <EditText
+                                android:id="@+id/input_review"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="top|left"
+                                android:drawableLeft="@null"
+                                android:lines="3"
+                                android:inputType="textMultiLine"
+                                android:overScrollMode="always"
+                                android:scrollbarStyle="insideInset"
+                                android:scrollbars="vertical"
+                                android:background="@drawable/tab_bar_border"/>
+
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/txtSubmit"
+                            android:layout_width="200dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="@dimen/space_large"
+                            android:background="@drawable/submit_btn"/>
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>

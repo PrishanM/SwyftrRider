@@ -13,6 +13,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -523,9 +524,10 @@ public class JsonRequestManager {
 
 	}
 
-	public void getOrderHistoryRequest(String url,final getOrderHistory callback) {
+	public void getOrderHistoryRequest(String url,String token,final getOrderHistory callback) {
 
 		HashMap<String, String> params = new HashMap<>();
+		params.put("token",token);
 
 		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
 				url, new JSONObject(params),
@@ -566,6 +568,82 @@ public class JsonRequestManager {
 				tag_json_arry);
 
 	}
+
+	/******************************************************************************************************************************************/
+
+	/**
+	 * Rate User
+	 **/
+	public interface rateUser{
+		void onSuccess(ResponseModel model);
+
+		void onError(String status);
+
+		void onError(ResponseModel model);
+
+
+	}
+
+	public void rateUserRequest(String url,String token,String orderId,String userRating,String storeRating,String appRating,String comment,
+										 final rateUser callback) {
+
+		String finalUrl = url+"?token="+token;
+		HashMap<String, String> params = new HashMap<>();
+
+
+		JSONObject jsonBody = null;
+		try {
+			jsonBody = new JSONObject("{\"order_id\":\"8\",\"user_rating\":\"3.0\",\"store_rating\":\"3.0\",\"app_rating\":\"5.0\",\"comment\":\"Test\"}");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		params.put("order_id",orderId);
+		params.put("user_rating",userRating);
+		params.put("store_rating",storeRating);
+		params.put("app_rating",appRating);
+		params.put("comment",comment);
+
+		JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+				finalUrl, jsonBody,
+				new Response.Listener<JSONObject>() {
+
+					@Override
+					public void onResponse(JSONObject response) {
+
+						ObjectMapper mapper = new ObjectMapper();
+
+						try {
+							if(response!=null){
+								ResponseModel responseModel = mapper.readValue(response.toString(), ResponseModel.class);
+								callback.onSuccess(responseModel);
+							}else{
+								callback.onError("Error occured");
+							}
+
+						} catch (Exception e) {
+							e.printStackTrace();
+							callback.onError("Error occured");
+						}
+					}
+				}, new Response.ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				callback.onError(errorResponse(error.networkResponse.data,HttpHeaderParser.parseCharset(error.networkResponse.headers)));
+			}
+		});
+
+		jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+		// Adding request to request queue
+		AppController.getInstance().addToRequestQueue(jsonObjReq,
+				tag_json_arry);
+
+	}
+
 
 	/******************************************************************************************************************************************/
 

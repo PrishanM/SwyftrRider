@@ -16,4 +16,5 @@ public class AppURL {
     public static final String GET_PICKUP__URL = "rider/pickuplocation";
     public static final String GET_DROP_OFF__URL = "rider/dropofflocation";
     public static final String GET_ORDER_HISTORY__URL = "rider/orderhistory?token=";
+    public static final String RATE_USER_URL = "rider/rate";
 }

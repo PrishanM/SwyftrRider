@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,7 +87,8 @@ public class DeliveryHistoryFragment extends Fragment {
 
         progress = ProgressDialog.show(getActivity(), null,
                 "Loading...", true);
-        JsonRequestManager.getInstance(getActivity()).getOrderHistoryRequest(AppURL.APPLICATION_BASE_URL+AppURL.GET_ORDER_HISTORY__URL+token, getOrderHistoryCallback);
+        Log.d("xxxxxxxxxx",token);
+        JsonRequestManager.getInstance(getActivity()).getOrderHistoryRequest(AppURL.APPLICATION_BASE_URL+AppURL.GET_ORDER_HISTORY__URL+token,token, getOrderHistoryCallback);
     }
 
     //Response callback for "Get Delivery History"

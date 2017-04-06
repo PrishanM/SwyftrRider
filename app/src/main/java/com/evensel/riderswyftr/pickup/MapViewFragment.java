@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -71,6 +72,11 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
     private LayoutInflater inflate;
     private final Handler handler = new Handler();
     private Runnable runnable;
+    private CountDownTimer countDownTimer;
+    private long totalTimeCountInMilliseconds; // total count down time in
+    // milliseconds
+    private long timeBlinkInMilliseconds; // start time of start blinking
+    private boolean blink; // controls the blinking .. on and off
 
     private String token;
     private double currentLatitude=0.0,currentLongitude=0.0;
@@ -345,6 +351,63 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
                     }
                 });
             }
+        }else{
+            final Dialog dialog1 = new Dialog(getActivity());
+            dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog1.setContentView(R.layout.custom_acknowlege_dialog);
+            dialog1.show();
+            Button btnAcknowledge= (Button)dialog1.findViewById(R.id.btnAcknowledge);
+            final TextView txtTimer = (TextView)dialog1.findViewById(R.id.txtTimer);
+            btnAcknowledge.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog1.dismiss();
+                }
+            });
+
+            int time = 5;
+
+            totalTimeCountInMilliseconds = 60 * time * 1000;
+
+            timeBlinkInMilliseconds = 30 * 1000;
+
+            countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
+                // 500 means, onTick function will be called at every 500
+                // milliseconds
+
+                @Override
+                public void onTick(long leftTimeInMilliseconds) {
+                    long seconds = leftTimeInMilliseconds / 1000;
+
+                    if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
+                        txtTimer.setTextAppearance(context,
+                                R.style.blinkText);
+                        // change the style of the textview .. giving a red
+                        // alert style
+
+                        if (blink) {
+                            txtTimer.setVisibility(View.VISIBLE);
+                            // if blink is true, textview will be visible
+                        } else {
+                            txtTimer.setVisibility(View.INVISIBLE);
+                        }
+
+                        blink = !blink; // toggle the value of blink
+                    }
+
+                    txtTimer.setText(String.format("%02d", seconds / 60)
+                            + ":" + String.format("%02d", seconds % 60));
+                    // format the textview to show the easily readable format
+
+                }
+
+                @Override
+                public void onFinish() {
+                    countDownTimer.cancel();
+                    dialog1.dismiss();
+                }
+
+            }.start();
         }
 
 
@@ -441,4 +504,6 @@ public class MapViewFragment extends Fragment implements GoogleMap.OnMarkerClick
     public void onRoutingCancelled() {
 
     }
+
+
 }
