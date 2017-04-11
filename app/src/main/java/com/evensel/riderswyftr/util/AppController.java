@@ -19,6 +19,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
+
 /**
  * @author prishanm 02/14/2017
  *
@@ -39,6 +41,9 @@ public class AppController extends Application {
     private static  String nicNumber;
  
     private static AppController mInstance;
+
+    private static ArrayList<Datum> thisWeekList ;
+    private static ArrayList<Datum> olderList;
 
     @Override
     public void onCreate() {
@@ -292,5 +297,21 @@ public class AppController extends Application {
 
     public static void setNicNumber(String nicNumber) {
         AppController.nicNumber = nicNumber;
+    }
+
+    public static ArrayList<Datum> getThisWeekList() {
+        return thisWeekList;
+    }
+
+    public static void setThisWeekList(ArrayList<Datum> thisWeekList) {
+        AppController.thisWeekList = thisWeekList;
+    }
+
+    public static ArrayList<Datum> getOlderList() {
+        return olderList;
+    }
+
+    public static void setOlderList(ArrayList<Datum> olderList) {
+        AppController.olderList = olderList;
     }
 }

@@ -149,14 +149,14 @@
         <!--<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>-->
 
         <!-- Google Maps HOME KEY-->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDgerIdWiLu6u0mjHEyWDfhuj-dUvgeZT0" />
-
-        <!-- Google Maps OUTSTATION KEY-->
         <!--<meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDB8zEEgywJfuIIEPwFO3zS6AG4i3b8ENc" />-->
+            android:value="AIzaSyDgerIdWiLu6u0mjHEyWDfhuj-dUvgeZT0" />-->
+
+        <!-- Google Maps OUTSTATION KEY-->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDB8zEEgywJfuIIEPwFO3zS6AG4i3b8ENc" />
 
 
     </application>

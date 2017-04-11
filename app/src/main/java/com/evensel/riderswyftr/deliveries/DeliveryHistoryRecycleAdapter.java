@@ -1,34 +1,15 @@
 package com.evensel.riderswyftr.deliveries;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.support.v4.util.LruCache;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.evensel.riderswyftr.R;
-import com.evensel.swyftr.R;
-import com.evensel.swyftr.util.AppController;
-import com.evensel.swyftr.util.AppURL;
-import com.evensel.swyftr.util.Constants;
-import com.evensel.swyftr.util.Datum;
-import com.evensel.swyftr.util.JsonRequestManager;
-import com.evensel.swyftr.util.ResponseModel;
-import com.mikhaellopez.circularimageview.CircularImageView;
+import com.evensel.riderswyftr.util.Datum;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 
@@ -38,9 +19,12 @@ import java.util.ArrayList;
 public class DeliveryHistoryRecycleAdapter extends  RecyclerView.Adapter<DeliveryHistoryRecycleAdapter.ImageViewHolder> {
 
 
+    private Context context;
+    private ArrayList<Datum> datumArrayList;
 
-    public DeliveryHistoryRecycleAdapter(){
-
+    public DeliveryHistoryRecycleAdapter(Context context,ArrayList<Datum> datumArrayList){
+        this.context=context;
+        this.datumArrayList=datumArrayList;
     }
 
     @Override
@@ -53,6 +37,10 @@ public class DeliveryHistoryRecycleAdapter extends  RecyclerView.Adapter<Deliver
     @Override
     public void onBindViewHolder(final ImageViewHolder holder, final int position) {
 
+        holder.txtOrderId.setText("Order "+String.valueOf(datumArrayList.get(position).getOrderId()));
+        holder.txtPrice.setText("20000 LKR");
+        holder.txtDelivery.setText(datumArrayList.get(position).getDeliveredLocation());
+        holder.txtDeliveryDate.setText(datumArrayList.get(position).getOrderDeliveredTime());
 
     }
 
@@ -63,21 +51,15 @@ public class DeliveryHistoryRecycleAdapter extends  RecyclerView.Adapter<Deliver
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
-        public final ImageView imgFav,imgPlus,imgMinus,imgPromo;
-        public final CircularImageView imgItem;
-        public final EditText txtQuantity;
-        public final TextView txtName,txtPrice,txtStocked;
+        public final TextView txtOrderId,txtPrice,txtPickup, txtPickupDate,txtDelivery,txtDeliveryDate;
         public ImageViewHolder(View itemView) {
             super(itemView);
-            imgFav = (ImageView)itemView.findViewById(R.id.imgFav);
-            imgPromo = (ImageView)itemView.findViewById(R.id.imgPromo);
-            imgPlus = (ImageView)itemView.findViewById(R.id.imgPlus);
-            imgMinus = (ImageView)itemView.findViewById(R.id.imgMinus);
-            imgItem = (CircularImageView) itemView.findViewById(R.id.imgItem);
-            txtStocked = (TextView)itemView.findViewById(R.id.txtStocked);
-            txtName = (TextView) itemView.findViewById(R.id.txtName);
-            txtPrice = (TextView) itemView.findViewById(R.id.txtPrice);
-            txtQuantity = (EditText) itemView.findViewById(R.id.txtQuantity);
+            txtOrderId = (TextView)itemView.findViewById(R.id.txtOrder);
+            txtPrice = (TextView)itemView.findViewById(R.id.txtTotal);
+            txtPickup = (TextView)itemView.findViewById(R.id.txtPickup);
+            txtPickupDate = (TextView)itemView.findViewById(R.id.txtPickupDate);
+            txtDelivery = (TextView)itemView.findViewById(R.id.txtDelivery);
+            txtDeliveryDate = (TextView) itemView.findViewById(R.id.txtDeliveryDate);
         }
     }
 

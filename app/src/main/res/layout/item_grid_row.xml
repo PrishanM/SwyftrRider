@@ -9,9 +9,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="wrap_content"
         android:weightSum="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/space_normal">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,6 +46,56 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/colorHint"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pick Up"
+            android:layout_marginLeft="@dimen/space_normal"
+            android:layout_marginTop="@dimen/space_normal"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_large"/>
+
+        <TextView
+            android:id="@+id/txtPickup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keells Super Mirihana"
+            android:layout_marginLeft="@dimen/space_normal"/>
+
+        <TextView
+            android:id="@+id/txtPickupDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2017-03-31 04:10:50"
+            android:layout_marginLeft="@dimen/space_normal"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_large"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delivery Location"
+            android:layout_marginLeft="@dimen/space_normal"
+            android:layout_marginTop="@dimen/space_normal"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_large"/>
+
+        <TextView
+            android:id="@+id/txtDelivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keells Super Mirihana"
+            android:layout_marginLeft="@dimen/space_normal"/>
+
+        <TextView
+            android:id="@+id/txtDeliveryDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2017-03-31 04:10:50"
+            android:layout_marginLeft="@dimen/space_normal"/>
 
 
 

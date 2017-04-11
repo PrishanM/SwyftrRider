@@ -8,13 +8,12 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.evensel.riderswyftr.R;
-import com.evensel.riderswyftr.util.AppURL;
+import com.evensel.riderswyftr.util.AppController;
 import com.evensel.riderswyftr.util.Constants;
 import com.evensel.riderswyftr.util.Datum;
 import com.evensel.riderswyftr.util.JsonRequestManager;
@@ -41,6 +40,7 @@ public class DeliveryHistoryFragment extends Fragment {
     private View layout;
     private LayoutInflater inflate;
     private String token;
+    private DeliveryHistoryPagerAdapter deliveryHistoryPagerAdapter;
     private ArrayList<Datum> thisWeekList = new ArrayList<>();
     private ArrayList<Datum> olderList = new ArrayList<>();
 
@@ -73,6 +73,19 @@ public class DeliveryHistoryFragment extends Fragment {
         return rootView;
     }
 
+    private void setupViewPager() {
+
+        ArrayList<String> titles = new ArrayList<>();
+        titles.add("This Week");
+        titles.add("Last Week");
+
+        deliveryHistoryPagerAdapter =
+                new DeliveryHistoryPagerAdapter(getChildFragmentManager(),titles);
+        viewPager.setAdapter(deliveryHistoryPagerAdapter);
+
+
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -85,10 +98,48 @@ public class DeliveryHistoryFragment extends Fragment {
 
     private void addFiles() {
 
-        progress = ProgressDialog.show(getActivity(), null,
+        /*progress = ProgressDialog.show(getActivity(), null,
                 "Loading...", true);
         Log.d("xxxxxxxxxx",token);
-        JsonRequestManager.getInstance(getActivity()).getOrderHistoryRequest(AppURL.APPLICATION_BASE_URL+AppURL.GET_ORDER_HISTORY__URL+token,token, getOrderHistoryCallback);
+        JsonRequestManager.getInstance(getActivity()).getOrderHistoryRequest(AppURL.APPLICATION_BASE_URL+AppURL.GET_ORDER_HISTORY__URL+token,token, getOrderHistoryCallback);*/
+
+        Datum datum = new Datum();
+        datum.setOrderId((long) 1);
+        datum.setDeliveredLocation("295/2 Stanley Thilakarathna Mawatha Nugegoda");
+        datum.setOrderDeliveredTime("2016-10-10 10:31:00");
+        thisWeekList.add(datum);
+
+        Datum datum2 = new Datum();
+        datum2.setOrderId((long) 2);
+        datum2.setDeliveredLocation("295/2 Stanley Thilakarathna Mawatha Nugegoda");
+        datum2.setOrderDeliveredTime("2016-10-10 10:31:00");
+        thisWeekList.add(datum2);
+
+        Datum datum3 = new Datum();
+        datum3.setOrderId((long) 3);
+        datum3.setDeliveredLocation("295/2 Stanley Thilakarathna Mawatha Nugegoda");
+        datum3.setOrderDeliveredTime("2016-10-10 10:31:00");
+        thisWeekList.add(datum3);
+
+
+
+        Datum datum4 = new Datum();
+        datum4.setOrderId((long) 4);
+        datum4.setDeliveredLocation("295/2 Stanley Thilakarathna Mawatha Nugegoda");
+        datum4.setOrderDeliveredTime("2016-10-10 10:31:00");
+        olderList.add(datum4);
+
+        Datum datum5 = new Datum();
+        datum5.setOrderId((long) 5);
+        datum5.setDeliveredLocation("295/2 Stanley Thilakarathna Mawatha Nugegoda");
+        datum5.setOrderDeliveredTime("2016-10-10 10:31:00");
+        olderList.add(datum5);
+
+        AppController.setOlderList(olderList);
+        AppController.setThisWeekList(thisWeekList);
+
+        setupViewPager();
+
     }
 
     //Response callback for "Get Delivery History"
@@ -101,13 +152,13 @@ public class DeliveryHistoryFragment extends Fragment {
                 progress.dismiss();
 
             if(model.getStatus().equalsIgnoreCase("success")){
-                for (Datum datum:model.getDetails().getData()){
+                /*for (Datum datum:model.getDetails().getData()){
                     if(isThisWeek(datum.getOrderDeliveredTime())){
                         thisWeekList.add(datum);
                     }else{
                         olderList.add(datum);
                     }
-                }
+                }*/
             }else{
                 Notifications.showToastMessage(layout,getActivity(),model.getMessage()).show();
             }

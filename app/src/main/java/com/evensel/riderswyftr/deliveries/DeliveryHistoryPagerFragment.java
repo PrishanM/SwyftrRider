@@ -3,16 +3,15 @@ package com.evensel.riderswyftr.deliveries;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.evensel.riderswyftr.R;
-import com.evensel.swyftr.R;
-import com.evensel.swyftr.util.AppController;
+import com.evensel.riderswyftr.util.AppController;
 
 /**
  * Created by Prishan Maduka on 2/12/2017.
@@ -39,7 +38,14 @@ public class DeliveryHistoryPagerFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_del_history, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        deliveryHistoryRecycleAdapter = new DeliveryHistoryRecycleAdapter(AppController.getSearchArrayList(),getActivity(),listener);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(mLayoutManager);
+        if(this.getArguments().getString("Title").equalsIgnoreCase("This Week")){
+            deliveryHistoryRecycleAdapter = new DeliveryHistoryRecycleAdapter(getActivity(), AppController.getThisWeekList());
+        }else{
+            deliveryHistoryRecycleAdapter = new DeliveryHistoryRecycleAdapter(getActivity(),AppController.getOlderList());
+        }
+
         recyclerView.setAdapter(deliveryHistoryRecycleAdapter);
         return rootView;
     }

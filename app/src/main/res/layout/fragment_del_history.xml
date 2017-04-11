@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:orientation="vertical"
         android:background="@drawable/background_image"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:padding="@dimen/space_normal">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

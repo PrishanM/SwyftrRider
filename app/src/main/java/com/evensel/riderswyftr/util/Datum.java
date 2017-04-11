@@ -1,6 +1,9 @@
 
 package com.evensel.riderswyftr.util;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -15,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "delivery_logitude",
     "delivery_lattitude"
 })
-public class Datum {
+public class Datum implements Parcelable {
 
     @JsonProperty("order_id")
     private Long orderId;
@@ -102,4 +105,45 @@ public class Datum {
         this.deliveryLattitude = deliveryLattitude;
     }
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.orderId);
+        dest.writeString(this.storeName);
+        dest.writeString(this.orderPlacedTime);
+        dest.writeString(this.orderDeliveredTime);
+        dest.writeString(this.deliveredLocation);
+        dest.writeValue(this.deliveryLogitude);
+        dest.writeValue(this.deliveryLattitude);
+    }
+
+    public Datum() {
+    }
+
+    protected Datum(Parcel in) {
+        this.orderId = (Long) in.readValue(Long.class.getClassLoader());
+        this.storeName = in.readString();
+        this.orderPlacedTime = in.readString();
+        this.orderDeliveredTime = in.readString();
+        this.deliveredLocation = in.readString();
+        this.deliveryLogitude = (Long) in.readValue(Long.class.getClassLoader());
+        this.deliveryLattitude = (Long) in.readValue(Long.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<Datum> CREATOR = new Parcelable.Creator<Datum>() {
+        @Override
+        public Datum createFromParcel(Parcel source) {
+            return new Datum(source);
+        }
+
+        @Override
+        public Datum[] newArray(int size) {
+            return new Datum[size];
+        }
+    };
 }
